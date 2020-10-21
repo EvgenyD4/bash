@@ -1,9 +1,21 @@
 #!/bin/bash
+# sudo mkdir /sh
+# nano /sh/iptables.sh
+# copy code file
+# save file
+# chmod +x /sh/iptables.sh
+# /sh/iptables.sh
+#
+# UNCOMMENT edit start
+#nano /sh/iptables.sh
+
 ## port 22,80,443,639,55557
 ## port 53,5060
 PORT_TCP='22,53,80,443,631,632,2000,5061,5222,5443,55555,55556,55557'
 PORT_UDP='53,5060'
 clear
+# info
+echo "iptables speed setup"
 
 sudo iptables -F
 sudo iptables -t nat -F
