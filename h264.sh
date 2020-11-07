@@ -23,4 +23,6 @@ rm fl-ffmpeg.txt
 #rm *.idx 2> /dev/null
 rm *.h264 2> /dev/null
 rm file*
+rm 1
+
 cd $HOME
