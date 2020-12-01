@@ -12,7 +12,13 @@ if dpkg --get-selections $INST_DEB_2 2> /dev/null | grep -oE install &> /dev/nul
  else sudo apt install $INST_DEB_2
 fi
 
-cd /320/src/fi/
+file="/home/$USER/NG"
+if [ -d $file ]; 
+ then cd /home/$USER/NG
+ else mkdir /home/$USER/NG
+      cd /home/$USER/NG
+fi
+
 pwd
 sleep 2
 echo "";
