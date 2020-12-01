@@ -1,16 +1,12 @@
 #!/bin/bash
 clear
 
-INST_DEB_1='aircrack-ng'
-INST_DEB_2='crunch'
-if dpkg --get-selections $INST_DEB_1 2> /dev/null | grep -oE install &> /dev/null;
- then echo " $INST_DEB_1 OK"
- else sudo apt install $INST_DEB_1
-fi
-if dpkg --get-selections $INST_DEB_2 2> /dev/null | grep -oE install &> /dev/null;
- then echo " $INST_DEB_2 OK"
- else sudo apt install $INST_DEB_2
-fi
+cat <<EOF >/tmp/inst_deb.txt;
+aircrack-ng
+crunch
+
+EOF
+for P in $(cat /tmp/inst_deb.txt); do echo " check install [ $P ]"; if ! dpkg --get-selections $P 2> /dev/null | grep -oE install &> /dev/null; then sudo apt install $P; fi; done
 
 file="/home/$USER/NG"
 if [ -d $file ]; 
