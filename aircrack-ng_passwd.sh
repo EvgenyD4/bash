@@ -6,7 +6,12 @@ aircrack-ng
 crunch
 
 EOF
-for P in $(cat /tmp/inst_deb.txt); do echo " check install [ $P ]"; if ! dpkg --get-selections $P 2> /dev/null | grep -oE install &> /dev/null; then sudo apt install $P; fi; done
+for P in $(cat /tmp/inst_deb.txt);
+ do echo " check install [ $P ]";
+  if ! dpkg --get-selections $P 2> /dev/null | grep -oE install &> /dev/null;
+   then sudo apt install $P; 
+  fi;
+ done
 
 file="/home/$USER/NG"
 if [ -d $file ]; 
