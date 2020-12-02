@@ -24,4 +24,4 @@ version="`firefox -v | awk '{print substr($3,$1,$3)}'`"
 echo " Firefox $version version."
 echo "";
 echo "restore Firefox:"
-echo "#tar -C /home/$USER/.firefox -xvf /.Backup/firefox_backup.tar.gz --strip-components 4"
+echo "#tar -C /dir2 -xvf /dir1/Back.tar.gz --strip-components 4"
