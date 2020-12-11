@@ -14,7 +14,7 @@ echo -en "\033[32m имя файла с обратным слеш, если ес
 echo -en "\E[0m";
 echo "";
 read N
-R=$(ls /2TB/anon/move/torrent/Shrek.3.the.Third.2007.BDRip.x264.RG.tru.mkv | grep -oE "...$")
+R=$(ls $INDIR/$N | grep -oE "...$")
 echo "";
 echo -en "\033[32m  директория назначения \033[40m"
 echo "";
@@ -22,8 +22,8 @@ echo -en "\033[32m /2TB/move/en/film/thriller \033[40m"
 echo -en "\E[0m";
 echo "";
 read OUTD
-if [ ! -d $OUTD ];
- then mkdir OUTD
+if [ ! -d "$OUTD" ];
+ then mkdir $OUTD
 fi
 echo "";
 echo -en "\033[32m имя конечного файла, исключая расширение \033[40m"
