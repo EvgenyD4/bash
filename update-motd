@@ -1,0 +1,27 @@
+#!/bin/sh
+
+date=`date`
+OS=`lsb_release -d | grep -oE ":.*" | sed -e 's/^://' | sed 's/^[[:space:]]*//g'`
+load=`cat /proc/loadavg | awk '{print $1}'`
+root_usage=`df -h / | awk '/\// {print $(NF-1)}'`
+memory_usage=`free -m | awk '/Mem:/ { total=$2 } /buffers\/cache/ { used=$3 } END { printf("%3.1f%%", used/total*100)}'`
+swap_usage=`free -m | awk '/Swap/ { printf("%3.1f%%", "exit !$2;$3/$2*100") }'`
+users=`users | wc -w`
+time=`uptime | grep -ohe 'up .*' | sed 's/,/\ hours/g' | awk '{ printf $2" "$3 }'`
+processes=`ps aux | wc -l`
+ip1=$(ip a | grep enp1s0 | grep -Eo '[0-9]{1,3}(\.[0-9]{1,3}){3}' | grep -v "255")
+#ip2=$(ip a | grep enp2s0 | grep -Eo '[0-9]{1,3}(\.[0-9]{1,3}){3}' | grep -v "255")
+#
+wget https://ip8.com -O /tmp/ip.txt 2>/dev/null
+IN=$(cat /tmp/ip.txt | grep resolveIp | grep -oE '[0-9]{1,3}(\.[0-9]{1,3}){3}')
+
+printf "Welcome to %s (%s %s %s)\n" "$DISTRIB_DESCRIPTION" "$(uname -o)" "$(uname -r)" "$(uname -m)"
+printf "$OS"
+printf "\tTime: %s\n" "$date"
+printf "\n"
+printf "System load:\t%s\t\tInt IP LAN:\t%s %s\n" $load $ip1
+printf "Memory usage:\t%s\t\tPub IP Address:\t%s\n" $memory_usage $IN
+printf "Usage on /:\t%s\t\tSwap usage:\t%s\n" $root_usage $swap_usage
+printf "Local Users:\t%s\t\tProcesses:\t%s\n" $users $processes
+printf "System uptime:\t%s" "$time"
+cat /tmp/hdd.txt
