@@ -1,4 +1,8 @@
 #!/bin/bash
+ls -tr /2TB/anon/move/torrent/
+echo "   чтобы продолжить, [Enter]"
+read U
+
 DIALOG=${DIALOG=dialog}
 dialog --title 'ln_n_minidlna.sh' --msgbox 'Для навигации использовать стрелки, для выбора файла \ директории [пробел]' 10 60
 TM=$($DIALOG --stdout --title "Выберите файл" --fselect /2TB/anon/move/torrent/ 10 60)
